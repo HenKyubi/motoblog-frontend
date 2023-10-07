@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Context provider
-import { AppProvider } from "./context/AppProvider";
+import { AppProvider } from "./contexts/AppProvider";
 
 // Pages
 import { HomePage } from "./pages/home.page";
