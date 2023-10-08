@@ -1,21 +1,15 @@
-export const HomePage: React.FC = () => {
-return (
-  // TODO:Navbar
+// import { Layout } from "../components/layout/layout.component";
 
-  // TODO: Hero
+import { Post } from "../components/posts/post.component";
 
-  // TODO: Hero
-
-  // TODO: Hero
-
-  // TODO: Hero
-
-  <>
-  <nav>
-    
-  </nav>
-
-
-  </>
-);
-}
+export const HomePage: React.FC<{ posts?: Post[] }> = () => {
+  return (
+    // TODO: Scroll for posts
+    <div>
+      {/* {posts.map((post) => (
+        <Post {...post} />
+      ))} */}
+      posts
+    </div>
+  );
+};
