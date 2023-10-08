@@ -6,6 +6,7 @@ import { Post } from "../components/posts/post.component";
 
 // Services
 import { getPosts } from "../services/getPosts.services";
+import { HeroHome } from "../components/heros/heroHome.component";
 
 export const HomePage: React.FC = () => {
   const [posts, setPosts] = useState([]);
@@ -20,10 +21,13 @@ export const HomePage: React.FC = () => {
   }, []);
   return (
     // TODO: Scroll for posts
-    <div>
-      {posts.map((post) => (
-        <Post postData={post} />
-      ))}
-    </div>
+    <>
+      <HeroHome />
+      <div>
+        {posts.map((post) => (
+          <Post postData={post} />
+        ))}
+      </div>
+    </>
   );
 };
