@@ -14,7 +14,7 @@ export interface Post {
   };
 }
 
-export const Post: React.FC<Post> = (postData) => {
+export const Post: React.FC<{ postData: Post }> = ({ postData }) => {
   return (
     <>
       <h3>{postData.user.username}</h3>
