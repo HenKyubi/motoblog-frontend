@@ -1,7 +1,7 @@
 // Types
 import { Visibility } from "../types/enums.type";
 
-export interface FormSignUp {
+export interface IFormSignUp {
   firstName: string;
   lastName: string;
   country: string;
@@ -11,8 +11,8 @@ export interface FormSignUp {
   password: string;
 }
 
-export interface FormLogin {
-  username: string;
+export interface IFormLogin {
+  email: string;
   password: string;
   rememberMe: boolean;
 }

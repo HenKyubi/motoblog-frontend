@@ -4,8 +4,8 @@ import { JWTMock } from "./jwt.interface";
 import {
   FormCreateComment,
   FormCreatePost,
-  FormLogin,
-  FormSignUp,
+  IFormLogin,
+  IFormSignUp,
   FormUpdateComment,
   FormUpdatePost,
   FormUpdateUser,
@@ -17,11 +17,11 @@ export interface RequestAuth extends Request {
 }
 
 export interface RequestSignUp extends Request {
-  body: FormSignUp;
+  body: IFormSignUp;
 }
 
 export interface RequestLogin extends Request {
-  body: FormLogin;
+  body: IFormLogin;
 }
 
 export interface RequestCreatePost extends RequestAuth {

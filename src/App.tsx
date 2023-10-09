@@ -4,21 +4,29 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AppProvider } from "./contexts/AppProvider";
 
 // Pages
-import { HomePage } from "./pages/home.page";
-import { ProfilePage } from "./pages/profile.page";
-import { NotFoundPage } from "./pages/404.page";
-import { Navbar } from "./components";
+import { HomePage, NotFoundPage, PostPage, ProfilePage } from "./pages";
+
+// Components
+import { SpinnerScreen } from "./components";
+
+// Types
+import {
+  HomeRoute,
+  NotFoundRoute,
+  PostRoute,
+  ProfileRoute,
+} from "./types/routes";
 
 export const App: React.FC = () => {
   return (
     <AppProvider>
       <BrowserRouter>
-        <Navbar />
+        <SpinnerScreen />
         <Routes>
-          <Route index path="/" element={<HomePage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/:username" element={<ProfilePage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route index path={HomeRoute} element={<HomePage />} />
+          <Route path={`${PostRoute}/:postId`} element={<PostPage />} />
+          <Route path={ProfileRoute} element={<ProfilePage />} />
+          <Route path={NotFoundRoute} element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </AppProvider>

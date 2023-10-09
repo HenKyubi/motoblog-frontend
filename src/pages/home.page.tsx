@@ -1,14 +1,30 @@
 // Libs
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 // Components
-import { Post } from "../components/posts/post.component";
+import { HeroHome, Layout, Post } from "../components";
 
 // Services
 import { getPosts } from "../services/getPosts.services";
-import { HeroHome } from "../components/heros/heroHome.component";
+
+// Context
+import { AppContext } from "../contexts/AppContext";
+
+interface IPostList {
+  posts: Post[];
+}
+const PostList: React.FC<IPostList> = ({ posts }) => {
+  return (
+    <div className="flex flex-col items-center px-8 py-5 space-y-10">
+      {posts.map((post: Post, idx) => (
+        <Post postData={post} key={idx} />
+      ))}
+    </div>
+  );
+};
 
 export const HomePage: React.FC = () => {
+  const {appState} = useContext(AppContext);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -18,16 +34,11 @@ export const HomePage: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [appState.isLogged]);
   return (
-    // TODO: Scroll for posts
-    <>
+    <Layout>
       <HeroHome />
-      <div>
-        {posts.map((post) => (
-          <Post postData={post} />
-        ))}
-      </div>
-    </>
+      <PostList posts={posts} />
+    </Layout>
   );
 };
