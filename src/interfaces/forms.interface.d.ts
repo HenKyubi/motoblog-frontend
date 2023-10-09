@@ -12,7 +12,7 @@ export interface IFormSignUp {
 }
 
 export interface IFormLogin {
-  email: string;
+  username: string;
   password: string;
   rememberMe: boolean;
 }

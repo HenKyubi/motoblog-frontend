@@ -1,10 +1,13 @@
 // Libs
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { App } from "./App.tsx";
 
 // Styles
-import './styles/index.scss';
+import "./styles/index.scss";
+import "react-toastify/dist/ReactToastify.css";
+
+// App
+import { App } from "./App.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

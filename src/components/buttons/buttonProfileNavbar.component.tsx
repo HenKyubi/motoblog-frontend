@@ -1,5 +1,6 @@
-import { createElement, useState } from "react";
-import { Link } from "react-router-dom";
+// Libs
+import { createElement, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Typography,
   Button,
@@ -12,38 +13,51 @@ import {
 import {
   ChevronDownIcon,
   Cog6ToothIcon,
-  LifebuoyIcon,
   PowerIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
 
+// Types
+import { EditProfileRoute, ProfileRoute } from "../../types/routes";
+
+// Context
+import { AppContext } from "../../contexts/AppContext";
+
 interface IButtonProfileNavbarProps {}
-
-// Profile options menu component
-const profileMenuItems = [
-  {
-    label: "My Profile",
-    icon: UserCircleIcon,
-  },
-  {
-    label: "Edit Profile",
-    icon: Cog6ToothIcon,
-  },
-
-  {
-    label: "Help",
-    icon: LifebuoyIcon,
-  },
-  {
-    label: "Sign Out",
-    icon: PowerIcon,
-  },
-];
 
 export const ButtonProfileNavbar: React.FC<IButtonProfileNavbarProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
+  const { closeSession } = useContext(AppContext);
+
   const closeMenu = () => setIsMenuOpen(false);
+
+  const navigate = useNavigate();
+  // Profile options menu component
+  const profileMenuItems = [
+    {
+      label: "My Profile",
+      icon: UserCircleIcon,
+      action: () => {
+        navigate(ProfileRoute);
+      },
+    },
+    {
+      label: "Edit Profile",
+      icon: Cog6ToothIcon,
+      action: () => {
+        navigate(EditProfileRoute);
+      },
+    },
+    {
+      label: "Sign Out",
+      icon: PowerIcon,
+      action: () => {
+        closeSession();
+        closeMenu();
+      },
+    },
+  ];
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -69,12 +83,12 @@ export const ButtonProfileNavbar: React.FC<IButtonProfileNavbarProps> = () => {
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-        {profileMenuItems.map(({ label, icon }, key) => {
+        {profileMenuItems.map(({ label, icon, action }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
           return (
             <MenuItem
               key={label}
-              onClick={closeMenu}
+              onClick={action}
               className={`flex items-center gap-2 rounded ${
                 isLastItem
                   ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
